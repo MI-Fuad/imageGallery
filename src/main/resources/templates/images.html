@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/fuadStyles.css}">
+
+    <title>LensGallery</title>
+</head>
+<body>
+<!-- Main Body of Page -->
+<!--  INDEX.HTML -- WAY TO NAVIGATE PAGE-->
+<div class="container">   <!--If anything goes south look at this bgImg1- the background image-->
+    <div class="row m-4">
+        <div class="col text-center border border-dark">
+            <h1>Photos</h1>
+        </div>
+    </div>
+
+    <div class="row m-4 border border-dark"> <!-- Div to contain THE BUTTONS/LINKS-->
+        <div class="col text-center m-3"> <!--div for teachers-->
+            <a href="index.html" class="btn btn-outline-primary btn-lg">Home</a>
+        </div>
+        <div class="col text-center m-3"> <!--div for photographers-->
+            <a href="artist" class="btn btn-outline-primary btn-lg">Photographers</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="images" class="btn btn-outline-primary btn-lg">Photos</a>
+        </div>
+        <div class="col text-center m-3">
+            <a href="admin" class="btn btn-outline-primary btn-lg">Admin</a>
+        </div>
+
+    </div>
+
+<!--    <form action="/imagesOrdered" method="GET">-->
+<!--        <button type="submit">Order By Price</button>-->
+<!--    </form>
+
+    <div class="row m-4 border border-dark"> <!-- Div to contain THE LIST OF IMAGES-->
+        <div class="col text-center m-3">
+            <table class="table table-striped">
+                <thead> <!-- header of table/list displayed in html-->
+                <tr>
+                    <th>ID</th>
+                    <th>
+                       <!-- <th>Artist</th>-->
+                        <form action="/performAction" method="POST">
+                            <div class="dropdown-wrapper">
+                                Artist
+                                <select name="selectedArtist" onchange="this.form.submit()">
+                                    <option value="all">All Artists</option>
+                                    <option value="MF">Mahmudul Fakrul</option>
+                                    <option value="SN">Sadeka Nujhat</option>
+                                </select>
+                            </div>
+                        </form>
+                    </th>
+
+                    <th>City</th>
+                    <th>Type</th>
+                    <th>
+                        <div class = "price-wrapper">
+                           <span><a href="#" th:href="@{/images}">Price</a></span>
+                           <!-- <a href="#" th:href="@{/imagesOrdered}">Price</a>-->
+                            <form action="/imagesOrdered" method="GET">
+                                <button type="submit">Asc</button>
+                            </form>
+                            <form action="/imagesOrderedDesc" method="GET">
+                                <button type="submit">Desc</button>
+                            </form>
+                        </div>
+                    </th>
+                    <th>File Name</th>
+                    <th>Artist ID</th>
+                    <th>Click to View</th>
+                    <!--<th> Filter
+                        <select>
+                            <option value="all">All Types</option>
+                            <option value="landscape">Landscape</option>
+                            <option value="cityscape">Cityscape</option>
+                        </select>
+                    </th>   -->
+
+                </tr>
+                </thead>
+                <tbody> <!-- this is the body of the list -->
+
+                <!-- iterating for each image object over a collection of images
+                     the ${images} expression refers to a collection ie. the List of images -->
+                <tr th:each="image : ${images}">
+                    <!-- the image object has different properties.
+                        using image.imageId, image.artistInitial etc. to refer to those properties-->
+                    <td th:text="${image.imageId}">Image ID</td> <!-- td is a table cell in HTML-->
+                    <td th:text="${image.artistInitial}">Artists Initials</td>
+                    <td th:text="${image.cityValue}"> City </td>
+                    <td th:text="${image.typeValue}">Photography Type</td>
+                    <td th:text="${image.price}">Photo Price</td>
+                    <td th:text="${image.fileNameValue}">View Photo</td>
+                    <td th:text="${image.artistId}">Artist ID</td>
+                    <td>
+                        <a th:href="@{'/' + ${image.fileNameValue} + '.html'}">View</a>
+                    </td>
+
+                    <!-- <td><a href="#" th:href="@{/photos/images{fileName}(fileName=${image.fileName})}">View</a></td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- END Div for LIST OF IMAGES-->
+</div>
+<!-- End main body -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>

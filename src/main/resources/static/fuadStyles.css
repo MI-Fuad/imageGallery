@@ -1,0 +1,56 @@
+/*import downloaded font */
+
+@font-face{
+ font-family: Ailerons;
+ src: url("/fonts/Ailerons-Typeface.otf");
+}
+
+/* styling all my h1s in the html o*/
+h1{
+    font-family: Ailerons;
+    color: grey;
+}
+
+
+.bgImg00{
+    background-image: url("/photos/DSC_0555.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 750px;
+}
+
+img {
+    max-width: 800px;
+    max-height: 800px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.price-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.price-wrapper span {
+  margin-right: 10px;
+}
+
+.dropdown-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-wrapper select {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+
+}
+
