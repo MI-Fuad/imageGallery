@@ -18,6 +18,7 @@ public class AdminController {
     @Autowired
     AdminDaoDB adminDaoDB;
 
+
     // Get mapping
     @GetMapping("admin") // <-- 1
     public String displayAdminImages(Model model){ // <-- 2
