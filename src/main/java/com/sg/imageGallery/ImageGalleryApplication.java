@@ -12,7 +12,6 @@ public class ImageGalleryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ImageGalleryApplication.class, args);
-
 	}
 
 }
